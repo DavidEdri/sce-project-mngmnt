@@ -6,7 +6,10 @@ export function GuestLinks({ closeMenu }) {
   return (
     <LinksAbstract
       closeMenu={closeMenu}
-      links={[{ text: text.registerLink, to: "/register" }]}
+      links={[
+        { text: text.loginLink, to: "/login" },
+        { text: text.registerLink, to: "/register" },
+      ]}
     />
   );
 }
