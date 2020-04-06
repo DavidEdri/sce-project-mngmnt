@@ -6,9 +6,17 @@ pipeline {
         }
     }
     stages {
-        stage("Test"){
+        stage('install') { 
+            steps {
+                sh 'npm install yarn' 
+                sh 'yarn'
+                sh 'npm run build --prefix packages/common'
+            }
+        }
+
+        stage('test'){
             steps{
-                sh "echo test"
+                sh'npm run test'
             }
         }
     }
