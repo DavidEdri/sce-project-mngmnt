@@ -1,0 +1,50 @@
+{
+  "name": "@project/server",
+  "version": "1.0.0",
+  "main": "dist/server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "NODE_ENV=development && babel-node ./src/server.js",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && babel ./src --out-dir dist --copy-files",
+    "prod": "NODE_ENV=production && node ./dist/server.js",
+    "test:dev": "NODE_ENV=test && jest --watch --runInBand --detectOpenHandles",
+    "test": "NODE_ENV=test && jest --runInBand --detectOpenHandles --force-exit"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "<rootDir>/dist/"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
+    ]
+  },
+  "dependencies": {
+    "@project/common": "1.0.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.10",
+    "nodemailer": "^6.3.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "@types/jest": "24.9.0",
+    "jest": "24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
+  }
+}

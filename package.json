@@ -1,0 +1,31 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "common": "npm run start --prefix packages/common",
+    "server:dev": "nodemon --exec npm run dev --prefix packages/server",
+    "serve": "npm run prod --prefix packages/server",
+    "web": "npm run start --prefix packages/web",
+    "dev": "concurrently \"npm run server:dev\" \"npm run web\" \"npm run common\"",
+    "build": "concurrently \"npm run build --prefix packages/server\" \"npm run build --prefix packages/web \" \"npm run build --prefix packages/common\"",
+    "clean": "concurrently \"npm run clean --prefix packages/server \" \"npm run clean --prefix packages/web \" \"npm run clean --prefix packages/common\"",
+    "test": "npm run test --prefix packages/server"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^1.19.1"
+  },
+  "name": "mern"
+}

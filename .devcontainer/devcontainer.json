@@ -1,0 +1,60 @@
+{
+  "name": "React VS Code Remote Container",
+  "dockerFile": "Dockerfile",
+  "appPort": [3000, 5000],
+  "extensions": [
+    "CoenraadS.bracket-pair-colorizer",
+    "dbaeumer.vscode-eslint",
+    "dsznajder.es7-react-js-snippets",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "PKief.material-icon-theme"
+  ],
+  "settings": {
+    "editor.fontSize": 16,
+    "workbench.startupEditor": "newUntitledFile",
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+    },
+    "emmet.syntaxProfiles": {
+      "javascript": "jsx",
+      "typescript": "jsx",
+      "typescriptreact": "jsx"
+    },
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "explorer.confirmDelete": false,
+    "window.zoomLevel": 1,
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\bash.exe",
+    "terminal.integrated.shell.linux": "/usr/bin/fish",
+    "workbench.editor.enablePreview": false,
+    "typescript.tsserver.log": "verbose",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorCustomizations": {
+      "terminal.background": "#20201D",
+      "terminal.foreground": "#A6A28C",
+      "terminalCursor.background": "#A6A28C",
+      "terminalCursor.foreground": "#A6A28C",
+      "terminal.ansiBlack": "#20201D",
+      "terminal.ansiBlue": "#003df3",
+      "terminal.ansiBrightBlack": "#7D7A68",
+      "terminal.ansiBrightBlue": "#0442fc",
+      "terminal.ansiBrightCyan": "#1FAD83",
+      "terminal.ansiBrightGreen": "#60AC39",
+      "terminal.ansiBrightMagenta": "#B854D4",
+      "terminal.ansiBrightRed": "#D73737",
+      "terminal.ansiBrightWhite": "#FEFBEC",
+      "terminal.ansiBrightYellow": "#AE9513",
+      "terminal.ansiCyan": "#1FAD83",
+      "terminal.ansiGreen": "#60AC39",
+      "terminal.ansiMagenta": "#B854D4",
+      "terminal.ansiRed": "#D73737",
+      "terminal.ansiWhite": "#A6A28C",
+      "terminal.ansiYellow": "#AE9513"
+    },
+    "extensions.ignoreRecommendations": false,
+    "gitlens.views.repositories.files.layout": "tree",
+    "workbench.tree.indent": 14
+  },
+  "postCreateCommand": "yarn"
+}

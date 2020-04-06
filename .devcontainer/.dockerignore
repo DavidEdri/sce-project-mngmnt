@@ -1,0 +1,12 @@
+*
+!.eslint.json
+!.gitignore
+!nodemon.json
+!package.json
+!yarn.lock
+!scripts
+!packages
+node_modules
+dist
+log
+build
