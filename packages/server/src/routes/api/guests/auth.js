@@ -55,4 +55,87 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/activate/:token", async (req, res) => {
+  const { token } = req.params;
+
+  const user = await User.findOne({ activateToken: token });
+
+  if (!user) return res.status(400).json("invalid token");
+
+  user.active = true;
+  user.activateToken = undefined;
+  await user.save();
+  return res.status(200).json("activated user");
+});
+
+router.post("/login", async (req, res) => {
+  const data = pick(req.body, ["email", "password"]);
+  const errors = {};
+
+  try {
+    await formsValidation.login.validate(data, { abortEarly: false });
+    const user = await User.findOne({ email: data.email });
+
+    if (!user) {
+      errors.general = returnText.passOrEmailError;
+      return res.status(400).json(errors);
+    }
+
+    const isMatch = await bcrypt.compare(data.password, user.password);
+
+    if (!isMatch) {
+      errors.general = returnText.passOrEmailError;
+      return res.status(400).json(errors);
+    }
+
+    const payload = utilsFunctions.userToPayload(user);
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRE },
+      (err, token) => {
+        if (err) {
+          logError(err, req);
+          return res.status(500).json({ msg: returnText.serverError });
+        }
+        return res
+          .status(200)
+          .json({ success: true, token: `Bearer ${token}` });
+      }
+    );
+  } catch (error) {
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
+router.post("/resendActivateMail/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(500).json({ msg: returnText.serverError });
+
+    user.activateToken = crypto.randomBytes(20).toString("hex");
+    await user.save();
+
+    const transporter = nodemailer.createTransport(constants.transporterOpts);
+
+    transporter.sendMail(
+      constants.registerEmail(user.email, user.activateToken),
+      async (err) => {
+        if (err) {
+          logError(err, req);
+          return res.status(500).json({ msg: returnText.serverError });
+        }
+
+        return res
+          .status(200)
+          .json({ msg: returnText.registerInstructions(user.email) });
+      }
+    );
+  } catch (error) {
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
 export default router;
