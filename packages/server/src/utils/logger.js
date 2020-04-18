@@ -71,3 +71,20 @@ export const logError = (err, req = null) => {
   error:${err}
   `);
 };
+
+export const logENew = (err, req = null) => {
+  const userMsg = req.user? `userID: ${req.user._id}\n  user email:${req.user.email}`: "";
+
+  if (req.body.password) { delete req.body.password;}
+  if (req.body.password2) {delete req.body.password2;}
+
+  const bodyMsg = `body:${JSON.stringify(req.body)}`;
+  const url = req ? req.originalUrl : "";
+
+  logger.error(`
+  url:${url}
+  ${userMsg}
+  ${bodyMsg}
+  error:${err}
+  `);
+};
