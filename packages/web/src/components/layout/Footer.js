@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   footer: {
     minHeight: 100,
     background: theme.palette.primary.main,
@@ -10,15 +10,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 10,
-  },
+    marginTop: 10
+  }
 }));
 
 export default function Footer() {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <div>Copyright © {new Date().getFullYear()} Team 14 </div>
+      <div>Copyright © {new Date().getFullYear()} MERN </div>
     </footer>
   );
 }

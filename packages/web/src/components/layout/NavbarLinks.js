@@ -8,16 +8,26 @@ export function GuestLinks({ closeMenu }) {
       closeMenu={closeMenu}
       links={[
         { text: text.loginLink, to: "/login" },
-        { text: text.registerLink, to: "/register" },
+        { text: text.registerLink, to: "/register" }
       ]}
     />
   );
 }
 
 export function UserLinks({ closeMenu }) {
-  return <LinksAbstract closeMenu={closeMenu} links={[]} />;
+  return (
+    <LinksAbstract
+      closeMenu={closeMenu}
+      links={[{ text: text.dashboardLink, to: "/dashboard" }]}
+    />
+  );
 }
 
 export function AdminLinks({ closeMenu }) {
-  return <LinksAbstract closeMenu={closeMenu} links={[]} />;
+  return (
+    <LinksAbstract
+      closeMenu={closeMenu}
+      links={[{ text: text.adminLink, to: "/admin" }]}
+    />
+  );
 }

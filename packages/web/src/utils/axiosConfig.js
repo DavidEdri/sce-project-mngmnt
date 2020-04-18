@@ -1,13 +1,13 @@
 import axios from "axios";
 import store from "../redux";
-import { logout } from "../redux/actions/authActions";
+import { logoutUser } from "../redux/actions/authActions";
 import { openSnackbar } from "../redux/actions/utilsActions";
 import text from "./_text";
 
 const applyAxiosConfig = () => {
   try {
     axios.interceptors.response.use(
-      (response) => {
+      response => {
         switch (response.status) {
           case 200:
             if (gotMsg(response.data)) {
@@ -19,11 +19,11 @@ const applyAxiosConfig = () => {
         }
         return response;
       },
-      (error) => {
+      error => {
         const { status, data } = error.response;
         switch (status) {
           case 401:
-            store.dispatch(logout());
+            store.dispatch(logoutUser());
             window.location.href = "/login";
             break;
 
@@ -49,7 +49,7 @@ const applyAxiosConfig = () => {
   }
 };
 
-const gotMsg = (obj) =>
+const gotMsg = obj =>
   typeof obj === "object" && "msg" in obj && typeof obj.msg === "string";
 
 const showMsg = (msg, type) => {

@@ -8,16 +8,16 @@ import {
   Typography,
   Button,
   Box,
-  CircularProgress,
+  CircularProgress
 } from "@material-ui/core";
-import { logout as logoutUser } from "../../../redux/actions/authActions";
+import { logoutUser } from "../../../redux/actions/authActions";
 import text from "../../../utils/_text";
 
 export default function ValidateToken({ match: { params } }) {
   const [content, setContent] = useState(<CircularProgress />);
   const history = useHistory();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector(state => state.auth.user);
   const { token } = params;
 
   if (user.active) {
@@ -93,5 +93,5 @@ export default function ValidateToken({ match: { params } }) {
 }
 
 ValidateToken.propTypes = {
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired
 };
