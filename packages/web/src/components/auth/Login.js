@@ -16,24 +16,24 @@ const fields = [
     label: text.emailLabel,
     type: "text",
     options: "email",
-    initialValue: "",
+    initialValue: ""
   },
   {
     fieldName: "password",
     label: text.passLabel,
     type: "text",
     options: "password",
-    initialValue: "",
-  },
+    initialValue: ""
+  }
 ];
 
 export default function Login({ location: { state } }) {
   const lastPath = state ? state.lastPath : null;
   const history = useHistory();
-  const isLoggedin = useSelector((state) => state.auth.isLoggedin);
+  const isLoggedin = useSelector(state => state.auth.isLoggedin);
   const dispatch = useDispatch();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     const { email, password } = data;
 
     const res = await Axios.post("/guests/auth/login", { email, password });
@@ -80,5 +80,5 @@ export default function Login({ location: { state } }) {
 }
 
 Login.propTypes = {
-  location: PropTypes.object,
+  location: PropTypes.object
 };

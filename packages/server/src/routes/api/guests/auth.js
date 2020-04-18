@@ -109,6 +109,94 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.post("/passwordReset", async (req, res) => {
+  const errors = {};
+  try {
+    const { email } = req.body;
+    await validation.inputs.email.validate({ email }, { abortEarly: false });
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      errors.general = returnText.emailNotFound;
+      return res.status(400).json(errors);
+    }
+
+    const token = crypto.randomBytes(20).toString("hex");
+
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = moment(new Date()).add(1, "day");
+    await user.save();
+
+    const transporter = nodemailer.createTransport(constants.transporterOpts);
+
+    transporter.sendMail(constants.resetPasswordEmail(email, token), (err) => {
+      if (err) {
+        logError(err, req);
+        return res.status(500).json({ msg: returnText.serverError });
+      }
+
+      return res.status(200).json({ success: true });
+    });
+  } catch (error) {
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
+router.post("/validateResetToken", async (req, res) => {
+  const { token } = req.body;
+
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ res: "invalidToken" });
+    }
+
+    return res.status(200).json({ name: user.name, email: user.email });
+  } catch (error) {
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
+router.post("/passwordReset/:token", async (req, res) => {
+  const errors = {};
+  try {
+    const { token } = req.params;
+    const { password, password2 } = req.body;
+
+    await validation.inputs.passwordConfirm.validate(
+      { password, password2 },
+      { abortEarly: false }
+    );
+
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      errors.general = returnText.tokenLinkError;
+      return res.status(400).json(errors);
+    }
+
+    user.password = password;
+    user.resetPasswordExpires = undefined;
+    user.resetPasswordToken = undefined;
+
+    await user.save();
+    return res.status(200).json({ msg: returnText.passwordChanged });
+  } catch (error) {
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
 router.post("/resendActivateMail/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id);

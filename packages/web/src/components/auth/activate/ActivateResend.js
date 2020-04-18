@@ -8,7 +8,7 @@ import text from "../../../utils/_text";
 export default function ActivateAccount() {
   const [clickable, setClickable] = useState(true);
   const history = useHistory();
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector(state => state.auth.user);
   const userID = user.id;
 
   const handleClick = async () => {
