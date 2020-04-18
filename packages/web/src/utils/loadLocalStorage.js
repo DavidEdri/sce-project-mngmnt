@@ -1,6 +1,6 @@
 import jwtDecode from "jwt-decode";
 import { setAuthToken } from "./functions";
-import { logoutUser, setCurrentUser } from "../redux/actions/authActions";
+import { logout, setCurrentUser } from "../redux/actions/authActions";
 import store from "../redux";
 
 const loadLocalStorage = () => {
@@ -10,7 +10,7 @@ const loadLocalStorage = () => {
     const currentTime = Date.now() / 1000;
 
     if (decoded.exp < currentTime) {
-      store.dispatch(logoutUser());
+      store.dispatch(logout());
       window.location.href = "/login";
     } else {
       store.dispatch(setCurrentUser(decoded));

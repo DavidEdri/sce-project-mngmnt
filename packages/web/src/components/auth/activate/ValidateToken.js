@@ -10,7 +10,7 @@ import {
   Box,
   CircularProgress,
 } from "@material-ui/core";
-import { logoutUser } from "../../../redux/actions/authActions";
+import { logout } from "../../../redux/actions/authActions";
 import text from "../../../utils/_text";
 
 export default function ValidateToken({ match: { params } }) {
@@ -27,7 +27,7 @@ export default function ValidateToken({ match: { params } }) {
   useEffect(() => {
     const handleRedirect = () => {
       if ("id" in user) {
-        dispatch(logoutUser());
+        dispatch(logout());
       }
       history.push("/login");
     };
