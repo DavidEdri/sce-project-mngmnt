@@ -27,6 +27,8 @@ export const userToPayload = (user) => ({
   active: user.active,
   name: user.name,
   email: user.email,
+  avatar: user.avatar,
+  manages: user.manages,
 });
 
 export const userToApi = (user) => ({
@@ -35,4 +37,6 @@ export const userToApi = (user) => ({
   _id: user._id,
   email: user.email,
   active: user.active,
+  avatar: user.avatar,
+  manages: user.manages,
 });

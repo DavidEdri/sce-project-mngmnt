@@ -5,34 +5,41 @@ const UserSchema = new Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
       lowercase: true,
-      required: true
+      required: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     rank: {
       type: Number,
-      default: 1
+      default: 1,
+    },
+    manages: {
+      type: Schema.Types.ObjectId,
+      ref: "facilities",
+    },
+    avatar: {
+      type: Buffer,
     },
     active: {
       type: Boolean,
-      default: false
+      default: false,
     },
     activateToken: {
-      type: String
+      type: String,
     },
     resetPasswordToken: {
-      type: String
+      type: String,
     },
     resetPasswordExpires: {
-      type: Date
-    }
+      type: Date,
+    },
   },
   { timestamps: true }
 );

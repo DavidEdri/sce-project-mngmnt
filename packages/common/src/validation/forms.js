@@ -4,7 +4,7 @@ import {
   email,
   passwordConfirm,
   rank,
-  boolField
+  boolField,
 } from "./inputs";
 
 export const noValidate = Yup.object().shape({});
@@ -20,3 +20,7 @@ export const adminAddUser = register.concat(rank).concat(boolField("active"));
 export const adminEditUser = requiredField("name")
   .concat(rank)
   .concat(boolField("active"));
+
+export const adminAssignFacility = requiredField("user").concat(
+  requiredField("facility")
+);
