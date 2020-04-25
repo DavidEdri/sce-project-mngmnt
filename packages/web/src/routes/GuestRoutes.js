@@ -5,36 +5,41 @@ import ActivateAccount from "../components/auth/activate/ActivateResend";
 import ValidateToken from "../components/auth/activate/ValidateToken";
 import SendPwdToken from "../components/auth/password-reset/SendPwdToken";
 import ChangePassword from "../components/auth/password-reset/ChangePassword";
+import Facility from "../components/guest/facility";
 
 const routes = [
   {
     path: "/",
-    component: GuestHome
+    component: GuestHome,
   },
   {
     path: "/login",
-    component: Login
+    component: Login,
   },
   {
     path: "/register",
-    component: Register
+    component: Register,
   },
   {
     path: "/activate",
-    component: ActivateAccount
+    component: ActivateAccount,
   },
   {
     path: "/activate/:token",
-    component: ValidateToken
+    component: ValidateToken,
   },
   {
     path: "/forgotPassword",
-    component: SendPwdToken
+    component: SendPwdToken,
   },
   {
     path: "/passwordreset/:token",
-    component: ChangePassword
-  }
+    component: ChangePassword,
+  },
+  {
+    path: "/facility/:id",
+    component: Facility,
+  },
 ];
 
 export default routes;
