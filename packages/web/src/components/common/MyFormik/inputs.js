@@ -179,7 +179,7 @@ export const MySwitch = ({ name, label }) => {
     <Box className={classes.marginDense}>
       <FormControlLabel
         className={classes.label}
-        control={<Switch {...field} color="primary" />}
+        control={<Switch checked={field.value} {...field} color="primary" />}
         label={label}
         labelPlacement="start"
       />

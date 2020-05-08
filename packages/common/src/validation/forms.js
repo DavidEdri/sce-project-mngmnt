@@ -24,3 +24,11 @@ export const adminEditUser = requiredField("name")
 export const adminAssignFacility = requiredField("user").concat(
   requiredField("facility")
 );
+
+
+export const editFacility = requiredField("name").concat(
+  requiredField("activity")).concat(
+    requiredField("condition")).concat(
+      boolField("fencing")).concat(
+        boolField("handicappe")).concat(
+          boolField("ligthing"))

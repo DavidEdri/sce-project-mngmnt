@@ -15,3 +15,11 @@ export const isAdmin = (req, res, next) => {
     res.status(401).json({ msg: "Unauthorized" });
   }
 };
+
+export const isManager = (req, res, next) => {
+  if (functions.isManager(req.user)) {
+    next();
+  } else {
+    res.status(401).json({ msg: "Unauthorized" });
+  }
+};

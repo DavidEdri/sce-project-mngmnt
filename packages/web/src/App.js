@@ -9,13 +9,15 @@ import "./App.css";
 import store from "./redux";
 import PrivateRoute from "./components/common/PrivateRoute";
 import AdminRoute from "./components/common/AdminRoute";
-import { AdminRoutes, UserRoutes, GuestRoutes } from "./routes";
+import ManagerRoute from "./components/common/ManagerRoute";
+import { AdminRoutes, UserRoutes, GuestRoutes, ManagerRoute as ManagerRoutes } from "./routes";
 import AppProvider from "./AppProvider";
 import Navbar from "./components/layout/Navbar";
 import AdminNavbar from "./components/admin/navbar";
 import Footer from "./components/layout/Footer";
 import Utils from "./components/utils";
 import PageNotFound from "./components/404";
+
 
 axiosConfig();
 loadLocalStorage();
@@ -45,6 +47,15 @@ export default function App() {
 
             {AdminRoutes.map(r => (
               <AdminRoute
+                exact
+                path={r.path}
+                component={r.component}
+                key={r.path}
+              />
+            ))}
+
+            {ManagerRoutes.map(r => (
+              <ManagerRoute
                 exact
                 path={r.path}
                 component={r.component}

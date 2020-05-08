@@ -50,3 +50,6 @@ export const yupErrorsToObj = e => {
   }
   return errors;
 };
+
+
+export const isManager = user => user && user.manages !== undefined
