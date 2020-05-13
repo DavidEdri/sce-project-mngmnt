@@ -8,7 +8,7 @@ export function GuestLinks({ closeMenu }) {
       closeMenu={closeMenu}
       links={[
         { text: text.loginLink, to: "/login" },
-        { text: text.registerLink, to: "/register" }
+        { text: text.registerLink, to: "/register" },
       ]}
     />
   );
@@ -28,6 +28,15 @@ export function AdminLinks({ closeMenu }) {
     <LinksAbstract
       closeMenu={closeMenu}
       links={[{ text: text.adminLink, to: "/admin" }]}
+    />
+  );
+}
+
+export function ManagerLinks({ closeMenu }) {
+  return (
+    <LinksAbstract
+      closeMenu={closeMenu}
+      links={[{ text: "Manage Facility", to: "/manager/edit" }]}
     />
   );
 }

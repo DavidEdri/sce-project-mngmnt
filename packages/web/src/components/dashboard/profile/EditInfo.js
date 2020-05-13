@@ -8,30 +8,30 @@ import { refreshJwt } from "../../../redux/actions/authActions";
 import MyFormik from "../../common/MyFormik/index";
 import text from "../../../utils/_text";
 
-const fields = user => [
+const fields = (user) => [
   {
     fieldName: "email",
     type: "other",
     props: { label: text.emailLabel },
     component: DisabledField,
-    initialValue: user.email
+    initialValue: user.email,
   },
   {
     fieldName: "name",
-    label: text.fullnameLabel,
+    label: text.fullNameLabel,
     type: "text",
     options: "text",
-    initialValue: user.name
+    initialValue: user.name,
   },
   {
     fieldName: "passwords",
     type: "other",
     component: EditPassword,
-    initialValue: { password: "", password2: "" }
-  }
+    initialValue: { password: "", password2: "" },
+  },
 ];
 
-const onSubmit = dispatch => async (data, actions, resetCaptcha) => {
+const onSubmit = (dispatch) => async (data, actions, resetCaptcha) => {
   try {
     await Axios.post("/users/userActions/editInfo", data);
     await refreshJwt(dispatch);
@@ -45,7 +45,7 @@ const onSubmit = dispatch => async (data, actions, resetCaptcha) => {
 };
 
 export default function EditInfo() {
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 
   return (
@@ -90,7 +90,7 @@ function EditPassword({ value, errorMsg, setValue }) {
             type="password"
             // eslint-disable-next-line react/prop-types
             value={value.password}
-            onChange={e => setValue({ ...value, password: e.target.value })}
+            onChange={(e) => setValue({ ...value, password: e.target.value })}
             fullWidth
           />
           <TextField
@@ -103,7 +103,7 @@ function EditPassword({ value, errorMsg, setValue }) {
             type="password"
             // eslint-disable-next-line react/prop-types
             value={value.password2}
-            onChange={e => setValue({ ...value, password2: e.target.value })}
+            onChange={(e) => setValue({ ...value, password2: e.target.value })}
             fullWidth
           />
         </>

@@ -25,14 +25,15 @@ import useStyles from "./style";
 
 export default function NavbarAbstract({ links }) {
   const classes = useStyles();
-  const auth = useSelector(state => state.auth);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, setOpen] = React.useState(false);
   const { isLoggedin } = auth;
   const isAdmin = isLoggedin && functions.isAdmin(auth.user);
+  const isManager = isLoggedin && functions.isManager(auth.user);
 
-  const typeToState = type => {
+  const typeToState = (type) => {
     switch (type) {
       case "admin":
         return isAdmin;
@@ -40,12 +41,14 @@ export default function NavbarAbstract({ links }) {
         return isLoggedin;
       case "loggedout":
         return !isLoggedin;
+      case "manager":
+        return isManager;
       default:
         return true;
     }
   };
 
-  const logout = e => {
+  const logout = (e) => {
     dispatch(logoutUser());
     history.push("/");
   };
@@ -101,12 +104,12 @@ export default function NavbarAbstract({ links }) {
                   name: text.profile,
                   func: () => {
                     history.push("/dashboard/profile/home");
-                  }
+                  },
                 },
                 {
                   name: text.logout,
-                  func: logout
-                }
+                  func: logout,
+                },
               ]}
             />
           )}
@@ -116,7 +119,7 @@ export default function NavbarAbstract({ links }) {
       <Drawer
         variant="permanent"
         classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
+          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
         open={open}
       >
@@ -153,5 +156,5 @@ export default function NavbarAbstract({ links }) {
 }
 
 NavbarAbstract.propTypes = {
-  links: PropTypes.array.isRequired
+  links: PropTypes.array.isRequired,
 };

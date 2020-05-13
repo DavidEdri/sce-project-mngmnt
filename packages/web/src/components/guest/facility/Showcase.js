@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import HeaderCard from "../../common/HeaderCard";
+import Rating from "./Rating";
 
 const useStyles = makeStyles((theme) => ({
   name: {
@@ -33,7 +34,7 @@ export default function Showcase({ name, rating }) {
               alt=""
             /> */}
           </Box>
-          <div>Rating</div>
+          <Rating rating={rating} />
         </Box>
       }
     />
