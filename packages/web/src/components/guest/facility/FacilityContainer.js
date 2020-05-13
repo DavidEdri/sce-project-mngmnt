@@ -5,6 +5,7 @@ import { Grid } from "@material-ui/core";
 import Info from "./Info";
 import Showcase from "./Showcase";
 import Location from "./Location";
+import Comments from "./Comments";
 
 const { pick } = functions;
 
@@ -21,7 +22,6 @@ export default function FacilityContainer({ facility }) {
   ]);
   const location = pick(facility, ["lat", "lon"]);
   const showcase = pick(facility, ["name", "rating"]);
-
   return (
     <Grid container spacing={3}>
       <Grid item md={6} xs={12}>
@@ -32,6 +32,12 @@ export default function FacilityContainer({ facility }) {
       </Grid>
       <Grid item md={6} xs={12}>
         <Location {...location} />
+      </Grid>
+      <Grid item xs={12}>
+        <Comments
+          facilityComments={facility.comments}
+          facilityID={facility._id}
+        />
       </Grid>
     </Grid>
   );

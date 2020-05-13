@@ -8,7 +8,10 @@ router.get("/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const facility = await Facility.findById(id);
+    const facility = await Facility.findById(id).populate(
+      "comments.user",
+      "name avatar"
+    );
 
     if (!facility) return res.status(400).json({ msg: "Invalid Facility id" });
 

@@ -61,6 +61,7 @@ const FacilitySchema = new Schema(
       {
         user: {
           type: Schema.Types.ObjectId,
+          ref: "users",
           required: true,
         },
         comment: {
