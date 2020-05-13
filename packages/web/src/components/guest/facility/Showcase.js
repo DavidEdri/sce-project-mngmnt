@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import HeaderCard from "../../common/HeaderCard";
 import Rating from "./Rating";
+import Favorite from "./Favorite";
 
 const useStyles = makeStyles((theme) => ({
   name: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Showcase({ name, rating }) {
+export default function Showcase({ name, rating, facilityID }) {
   const classes = useStyles();
   return (
     <HeaderCard
@@ -35,6 +36,7 @@ export default function Showcase({ name, rating }) {
             /> */}
           </Box>
           <Rating rating={rating} />
+          <Favorite facilityID={facilityID} />
         </Box>
       }
     />
@@ -44,4 +46,5 @@ export default function Showcase({ name, rating }) {
 Showcase.propTypes = {
   name: PropTypes.string.isRequired,
   rating: PropTypes.object.isRequired,
+  facilityID: PropTypes.string.isRequired,
 };

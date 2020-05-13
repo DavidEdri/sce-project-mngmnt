@@ -25,7 +25,7 @@ export default function FacilityContainer({ facility }) {
   return (
     <Grid container spacing={3}>
       <Grid item md={6} xs={12}>
-        <Showcase {...showcase} />
+        <Showcase {...showcase} facilityID={facility._id} />
       </Grid>
       <Grid item md={6} xs={12}>
         <Info {...info} />

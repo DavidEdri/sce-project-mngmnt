@@ -1,9 +1,9 @@
 import axios from "axios";
 import jwtDecode from "jwt-decode";
-import { setUser } from "../slices/auth";
+import { setUser, addToFavorite, removeFromFavorite } from "../slices/auth";
 import { setAuthToken } from "../../utils/functions";
 
-export const loginUser = token => {
+export const loginUser = (token) => {
   localStorage.setItem("jwtToken", token);
   setAuthToken(token);
 
@@ -12,9 +12,9 @@ export const loginUser = token => {
   return setUser(decoded);
 };
 
-export const setCurrentUser = decoded => setUser(decoded);
+export const setCurrentUser = (decoded) => setUser(decoded);
 
-export const refreshJwt = async dispatch => {
+export const refreshJwt = async (dispatch) => {
   const res = await axios.get("/users/userActions/refreshJWT");
   const { token } = res.data;
 
@@ -26,3 +26,5 @@ export const logoutUser = () => {
   setAuthToken(false);
   return setUser({});
 };
+
+export { addToFavorite, removeFromFavorite };

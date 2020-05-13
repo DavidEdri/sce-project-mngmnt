@@ -40,6 +40,7 @@ const UserSchema = new Schema(
     resetPasswordExpires: {
       type: Date,
     },
+    favorites: [String],
   },
   { timestamps: true }
 );

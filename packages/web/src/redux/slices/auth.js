@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoggedin: false,
-  user: {}
+  user: {},
 };
 
 const slice = createSlice({
@@ -11,11 +11,17 @@ const slice = createSlice({
   reducers: {
     setUser: (_, { payload }) => ({
       isLoggedin: Object.keys(payload).length !== 0,
-      user: payload
-    })
-  }
+      user: payload,
+    }),
+    addToFavorite: (state, { payload }) => {
+      state.user.favorites.push(payload);
+    },
+    removeFromFavorite: (state, { payload }) => {
+      state.user.favorites.filter((f) => f !== payload);
+    },
+  },
 });
 
-export const { setUser } = slice.actions;
+export const { setUser, addToFavorite, removeFromFavorite } = slice.actions;
 
 export default slice;
