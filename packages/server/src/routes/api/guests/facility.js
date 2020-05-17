@@ -22,4 +22,18 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const facilities = await Facility.find().populate(
+      "comments.user",
+      "name avatar"
+    );
+
+    return res.status(200).json(facilities);
+  } catch (error) {
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
 export default router;

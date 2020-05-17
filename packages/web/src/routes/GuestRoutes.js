@@ -6,6 +6,7 @@ import ValidateToken from "../components/auth/activate/ValidateToken";
 import SendPwdToken from "../components/auth/password-reset/SendPwdToken";
 import ChangePassword from "../components/auth/password-reset/ChangePassword";
 import Facility from "../components/guest/facility";
+import FacilityList from "../components/guest/FacilityList";
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: "/login",
     component: Login,
+  },
+  {
+    path: "/facilities",
+    component: FacilityList,
   },
   {
     path: "/register",

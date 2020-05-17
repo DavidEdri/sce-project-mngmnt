@@ -4,8 +4,13 @@ import PropTypes from "prop-types";
 export default function Location({ lon, lat }) {
   return (
     <div>
-      {lon}
-      {lat}
+      <iframe
+        title="map"
+        src={`http://maps.google.com/maps?z=12&t=m&q=loc:${lat},${lon}&output=embed`}
+        height="300"
+        frameBorder="0"
+        allowFullScreen=""
+      />
     </div>
   );
 }
