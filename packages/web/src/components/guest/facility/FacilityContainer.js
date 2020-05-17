@@ -6,6 +6,7 @@ import Info from "./Info";
 import Showcase from "./Showcase";
 import Location from "./Location";
 import Comments from "./Comments";
+import Gallery from "./Gallery";
 
 const { pick } = functions;
 
@@ -32,6 +33,9 @@ export default function FacilityContainer({ facility }) {
       </Grid>
       <Grid item md={6} xs={12}>
         <Location {...location} />
+      </Grid>
+      <Grid item md={6} xs={12}>
+        {facility.gallery.length > 0 && <Gallery images={facility.gallery} />}
       </Grid>
       <Grid item xs={12}>
         <Comments

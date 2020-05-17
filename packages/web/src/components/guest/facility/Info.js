@@ -16,6 +16,7 @@ export default function Info({
 }) {
   return (
     <HeaderCard
+      style={{ height: "100%", alignItems: "center" }}
       header="Info"
       content={
         <Box display="flex" flexDirection="column" alignItems="center">

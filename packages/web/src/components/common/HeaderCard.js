@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Card, CardHeader, CardContent } from "@material-ui/core";
 
-export default function HeaderCard({ header, content }) {
+export default function HeaderCard({ header, content, ...other }) {
   return (
-    <Card>
+    <Card {...other}>
       <CardHeader
         titleTypographyProps={{ align: "center", color: "primary" }}
         title={header}
