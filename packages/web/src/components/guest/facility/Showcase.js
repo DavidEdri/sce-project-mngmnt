@@ -35,7 +35,7 @@ export default function Showcase({ name, rating, facilityID }) {
               alt=""
             /> */}
           </Box>
-          <Rating rating={rating} />
+          <Rating facilityID={facilityID} rating={rating} />
           <Favorite facilityID={facilityID} />
         </Box>
       }

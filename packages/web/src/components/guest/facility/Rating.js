@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Rating from "@material-ui/lab/Rating";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
@@ -9,6 +9,7 @@ import SentimentVerySatisfiedIcon from "@material-ui/icons/SentimentVerySatisfie
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { useSelector } from "react-redux";
+import Axios from "axios";
 
 const customIcons = {
   1: {
@@ -42,7 +43,8 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function MyRating({ rating }) {
+export default function MyRating({ rating: ratingProp, facilityID }) {
+  const [rating, setRating] = useState(ratingProp);
   const auth = useSelector((state) => state.auth);
   const canRate = auth.isLoggedin && !rating.ratedBy.includes(auth.user.id);
   const isUnrated = rating.ratedBy.length === 0;
@@ -50,16 +52,20 @@ export default function MyRating({ rating }) {
 
   const onRate = async (e) => {
     try {
-      const newRating = e.target.value;
-      console.log(newRating);
-      //   TODO: send request to server
+      const rate = e.target.value;
+
+      const res = await Axios.post("/users/facility/rate", {
+        facilityID,
+        rate,
+      });
+      setRating(res.data.rating);
     } catch (error) {}
   };
 
   return (
     <Box my={2} display="flex" flexDirection="column" alignItems="center">
       <Typography component="legend">
-        {isUnrated ? "Unrated facility" : rate}
+        {isUnrated ? "Unrated facility" : <div>{`Rating: ${rate}`}</div>}
       </Typography>
       <Rating
         onChange={onRate}
@@ -75,4 +81,5 @@ export default function MyRating({ rating }) {
 
 MyRating.propTypes = {
   rating: PropTypes.object.isRequired,
+  facilityID: PropTypes.string.isRequired,
 };
