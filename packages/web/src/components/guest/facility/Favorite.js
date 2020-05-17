@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import Axios from "axios";
+import { Button, Box } from "@material-ui/core";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import {
   addToFavorite,
   removeFromFavorite,
@@ -9,6 +11,8 @@ import {
 
 const Favorite = ({ facilityID }) => {
   const dispatch = useDispatch();
+  const { user, isLoggedin } = useSelector((state) => state.auth);
+
   const add = async () => {
     try {
       await Axios.put("/users/facility/favorite", { facilityID });
@@ -23,12 +27,29 @@ const Favorite = ({ facilityID }) => {
     } catch (error) {}
   };
 
-  const { user, isLoggedin } = useSelector((state) => state.auth);
   if (!isLoggedin) return <></>;
-  if (user.favorites.includes(facilityID))
-    return <div onClick={remove}>Remove from favorites</div>;
 
-  return <div onClick={add}>add to favorites</div>;
+  return (
+    <Box display="flex" justifyContent="center">
+      {user.favorites.includes(facilityID) ? (
+        <Button
+          color="primary"
+          startIcon={<FavoriteIcon color="error" />}
+          onClick={remove}
+        >
+          Remove from favorites
+        </Button>
+      ) : (
+        <Button
+          color="primary"
+          startIcon={<FavoriteIcon color="error" />}
+          onClick={add}
+        >
+          add to favorites
+        </Button>
+      )}
+    </Box>
+  );
 };
 
 Favorite.propTypes = {

@@ -74,7 +74,7 @@ const FacilitySchema = new Schema(
         },
       },
     ],
-    gallery: [Buffer],
+    gallery: [String],
   },
   { timestamps: true }
 );

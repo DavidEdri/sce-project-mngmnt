@@ -1,6 +1,10 @@
 import jwtDecode from "jwt-decode";
 import { setAuthToken } from "./functions";
-import { logoutUser, setCurrentUser } from "../redux/actions/authActions";
+import {
+  logoutUser,
+  refreshJwt,
+  setCurrentUser,
+} from "../redux/actions/authActions";
 import store from "../redux";
 
 const loadLocalStorage = () => {
@@ -14,6 +18,7 @@ const loadLocalStorage = () => {
       window.location.href = "/login";
     } else {
       store.dispatch(setCurrentUser(decoded));
+      refreshJwt(store.dispatch);
     }
   }
 };
