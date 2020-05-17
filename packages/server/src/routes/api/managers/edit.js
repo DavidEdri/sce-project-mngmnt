@@ -78,4 +78,26 @@ router.put("/", multer().array("gallery", 5), async (req, res) => {
   }
 });
 
+router.delete("/comment/:index", async (req, res) => {
+  const index = Number(req.params.index);
+
+  try {
+    const f = await Facility.findOne({
+      manager: req.user._id,
+    });
+    if (!f)
+      return res.status(400).json({ msg: "No facility for you my friend" });
+
+    f.comments.splice(index, 1);
+
+    await f.save();
+
+    return res.status(200).json("Success");
+  } catch (error) {
+    console.log(error);
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
 export default router;
