@@ -36,7 +36,8 @@ router.put("/", multer().array("gallery", 5), async (req, res) => {
   const existingImagesArray = [
     ...(typeof existingImages === "string" ? [existingImages] : existingImages),
   ];
-  const gallery = [...req.files, ...existingImagesArray];
+  const files = req.files ? req.files : [];
+  const gallery = [...files, ...existingImagesArray];
 
   try {
     await validation.forms.editFacility.validate(
@@ -72,7 +73,6 @@ router.put("/", multer().array("gallery", 5), async (req, res) => {
 
     return res.status(200).json({ msg: "Success" });
   } catch (error) {
-    console.log(error);
     const { json, status } = errorHandler(error, req);
     return res.status(status).json(json);
   }
