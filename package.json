@@ -11,7 +11,8 @@
     "dev": "concurrently \"npm run server:dev\" \"npm run web\" \"npm run common\"",
     "build": "concurrently \"npm run build --prefix packages/server\" \"npm run build --prefix packages/web \" \"npm run build --prefix packages/common\"",
     "clean": "concurrently \"npm run clean --prefix packages/server \" \"npm run clean --prefix packages/web \" \"npm run clean --prefix packages/common\"",
-    "test": "npm run test --prefix packages/server"
+    "test": "npm run test --prefix packages/server",
+    "validate": "./node_modules/.bin/eslint -f table  packages/server/src packages/common/src"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",

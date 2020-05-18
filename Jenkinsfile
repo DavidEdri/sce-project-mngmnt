@@ -19,5 +19,10 @@ pipeline {
                 sh'npm run test'
             }
         }
+        stage('validate'){
+            steps{
+                sh'npm run validate'
+            }
+        }
     }
 }
