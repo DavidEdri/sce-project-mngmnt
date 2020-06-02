@@ -26,16 +26,11 @@ export default function Info({
           <InfoRow title="Type" text={type} />
           <InfoRow title="Operator" text={operator} />
 
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="space-around"
-            style={{ width: "100%" }}
-          >
-            <InfoIcon bool={fencing} text="Fencing" icon={GridOn} />
-            <InfoIcon bool={handicappe} text="Accessibilty" icon={Accessible} />
-            <InfoIcon bool={ligthing} text="Lighning" icon={WbIncandescent} />
-          </Box>
+          <FacilityBools
+            fencing={fencing}
+            handicappe={handicappe}
+            ligthing={ligthing}
+          />
         </Box>
       }
     />
@@ -51,6 +46,27 @@ Info.propTypes = {
   neighborhood: PropTypes.string.isRequired,
   operator: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+};
+
+export function FacilityBools({ handicappe, ligthing, fencing }) {
+  return (
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="space-around"
+      style={{ width: "100%" }}
+    >
+      <InfoIcon bool={fencing} text="Fencing" icon={GridOn} />
+      <InfoIcon bool={handicappe} text="Accessibilty" icon={Accessible} />
+      <InfoIcon bool={ligthing} text="Lighning" icon={WbIncandescent} />
+    </Box>
+  );
+}
+
+FacilityBools.propTypes = {
+  fencing: PropTypes.bool.isRequired,
+  handicappe: PropTypes.bool.isRequired,
+  ligthing: PropTypes.bool.isRequired,
 };
 
 function InfoRow({ title, text }) {

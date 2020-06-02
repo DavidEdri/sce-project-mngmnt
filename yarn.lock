@@ -2135,11 +2135,6 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-attr-accept@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.1.0.tgz#a231a854385d36ff7a99647bb77b33c8a5175aee"
-  integrity sha512-sLzVM3zCCmmDtDNhI0i96k6PUztkotSOXqE4kDGQt/6iDi5M+H0srjeF+QC6jN581l4X/Zq3Zu/tgcErEssavg==
-
 autoprefixer@^9.6.1:
   version "9.7.5"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.7.5.tgz#8df10b9ff9b5814a8d411a5cfbab9c793c392376"
@@ -3183,6 +3178,11 @@ console-browserify@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.2.0.tgz#67063cef57ceb6cf4993a2ab3a55840ae8c49336"
   integrity sha512-ZMkYO/LkF17QvCPqM0gxw8yUzigAOZOSWSHg91FH6orS7vcEj5dVZTidN2fQ14yBSdg97RqhSNwLUXInd52OTA==
+
+"consolidated-events@^1.1.0 || ^2.0.0":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/consolidated-events/-/consolidated-events-2.0.2.tgz#da8d8f8c2b232831413d9e190dc11669c79f4a91"
+  integrity sha512-2/uRVMdRypf5z/TW/ncD/66l75P5hH2vM/GR8Jf8HLc2xnfJtmina6F6du8+v4Z2vTrMo7jC+W1tmEEuuELgkQ==
 
 constants-browserify@^1.0.0:
   version "1.0.0"
@@ -4900,13 +4900,6 @@ file-loader@3.0.1:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^1.0.0"
-
-file-selector@^0.1.12:
-  version "0.1.12"
-  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.1.12.tgz#fe726547be219a787a9dcc640575a04a032b1fd0"
-  integrity sha512-Kx7RTzxyQipHuiqyZGf+Nz4vY9R1XGxuQl/hLoJwq+J4avk/9wxxgZyHKtbyIPJmbD4A66DWGYfyykWNpcYutQ==
-  dependencies:
-    tslib "^1.9.0"
 
 file-stream-rotator@^0.5.7:
   version "0.5.7"
@@ -9377,7 +9370,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.4"
 
-prop-types@^15.5.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.0.0, prop-types@^15.5.0, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9646,22 +9639,6 @@ react-double-scrollbar@0.0.15:
   resolved "https://registry.yarnpkg.com/react-double-scrollbar/-/react-double-scrollbar-0.0.15.tgz#e915ab8cb3b959877075f49436debfdb04288fe4"
   integrity sha1-6RWrjLO5WYdwdfSUNt6/2wQoj+Q=
 
-react-dropzone-uploader@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/react-dropzone-uploader/-/react-dropzone-uploader-2.11.0.tgz#6579e83f4f98c8248a3f3b5825c436ca3d6441cf"
-  integrity sha512-1DpdPMGKP7vYL5SeCh13HCl+Xrz0F6jGrDPU5Tj2ojEIXGMCtfflrZhyXdr7u40IkQ+hYjAUEEtJW24SiY8WRA==
-  dependencies:
-    "@babel/runtime" "^7.1.2"
-
-react-dropzone@^11.0.1:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-11.0.1.tgz#c8b6a6ed02576e5365af2e2a3f3b31df31feb213"
-  integrity sha512-x/6wqRHaR8jsrNiu/boVMIPYuoxb83Vyfv77hO7/3ZRn8Pr+KH5onsCsB8MLBa3zdJl410C5FXPUINbu16XIzw==
-  dependencies:
-    attr-accept "^2.0.0"
-    file-selector "^0.1.12"
-    prop-types "^15.7.2"
-
 react-error-overlay@^6.0.3:
   version "6.0.7"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
@@ -9680,7 +9657,7 @@ react-google-recaptcha@^2.0.1:
     prop-types "^15.5.0"
     react-async-script "^1.1.1"
 
-react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
+react-is@^16.6.0, react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -9795,6 +9772,15 @@ react-transition-group@^4.0.0, react-transition-group@^4.3.0:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
+
+react-waypoint@^9.0.2:
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/react-waypoint/-/react-waypoint-9.0.2.tgz#d65fb0fe6ff5c1b832a1d01b1462a661fb921e45"
+  integrity sha512-6tIr9NozeDH789Ox2tOkyDcmprYOx1+eII40dERLrZclFe6RhWAQ/bbd6B7cGild6onXNwPzg16y0/wHWQ/q+g==
+  dependencies:
+    consolidated-events "^1.1.0 || ^2.0.0"
+    prop-types "^15.0.0"
+    react-is "^16.6.3"
 
 react@^16.11.0:
   version "16.13.1"
