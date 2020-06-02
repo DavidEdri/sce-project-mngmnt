@@ -3,12 +3,7 @@ import LinksAbstract from "../common/NavbarAbstract/LinksAbstract";
 import text from "../../utils/_text";
 
 export function ToAll({ closeMenu }) {
-  return (
-    <LinksAbstract
-      closeMenu={closeMenu}
-      links={[{ text: "Facilities", to: "/facilities" }]}
-    />
-  );
+  return <LinksAbstract closeMenu={closeMenu} links={[]} />;
 }
 export function GuestLinks({ closeMenu }) {
   return (

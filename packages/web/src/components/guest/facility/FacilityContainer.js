@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { functions } from "@project/common";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
@@ -7,10 +8,12 @@ import Showcase from "./Showcase";
 import Location from "./Location";
 import Comments from "./Comments";
 import Gallery from "./Gallery";
+import SendMessage from "./SendMessage";
 
 const { pick } = functions;
 
 export default function FacilityContainer({ facility }) {
+  const isLoggedin = useSelector((state) => state.auth.isLoggedin);
   const info = pick(facility, [
     "activity",
     "condition",
@@ -43,6 +46,11 @@ export default function FacilityContainer({ facility }) {
           facilityID={facility._id}
         />
       </Grid>
+      {isLoggedin && (
+        <Grid item xs={12}>
+          <SendMessage managerID={facility.manager} />
+        </Grid>
+      )}
     </Grid>
   );
 }
