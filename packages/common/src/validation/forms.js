@@ -26,11 +26,11 @@ export const adminAssignFacility = requiredField("user").concat(
 );
 
 export const editFacility = requiredField("name")
-  // .concat(requiredField("activity"))
-  // .concat(requiredField("condition"))
-  // .concat(boolField("fencing"))
-  // .concat(boolField("handicappe"))
-  // .concat(boolField("ligthing"))
+  .concat(requiredField("activity"))
+  .concat(requiredField("condition"))
+  .concat(boolField("fencing"))
+  .concat(boolField("handicappe"))
+  .concat(boolField("ligthing"))
   .concat(
     Yup.object().shape({
       gallery: Yup.array().of(
@@ -55,3 +55,7 @@ export const editFacility = requiredField("name")
       ),
     })
   );
+
+export const message = requiredField("from")
+  .concat(requiredField("to"))
+  .concat(requiredField("message"));
