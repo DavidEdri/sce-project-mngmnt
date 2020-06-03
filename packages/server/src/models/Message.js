@@ -12,6 +12,10 @@ const MessageSchema = new Schema(
       ref: "users",
       required: true,
     },
+    message: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

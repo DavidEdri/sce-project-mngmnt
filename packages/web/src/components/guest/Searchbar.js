@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: `${theme.spacing(2)}px 0`,
+    alignItems: "center",
   },
 }));
 
@@ -73,12 +74,7 @@ export default function Searchbar({ setFacilities, facilitiesArr }) {
         />
       </Grid>
       <Grid item md={6} xs={12}>
-        <FormControl
-          component="fieldset"
-          fullWidth
-          margin="dense"
-          style={{ top: -4 }}
-        >
+        <FormControl component="fieldset" fullWidth margin="dense">
           <InputLabel>Neighborhood</InputLabel>
           <Select
             name={name}

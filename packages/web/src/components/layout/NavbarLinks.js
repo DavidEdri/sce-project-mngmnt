@@ -39,7 +39,10 @@ export function ManagerLinks({ closeMenu }) {
   return (
     <LinksAbstract
       closeMenu={closeMenu}
-      links={[{ text: "Manage Facility", to: "/manager/edit" }]}
+      links={[
+        { text: "Manage Facility", to: "/manager/edit" },
+        { text: "Facility Reports", to: "/manager/reports" },
+      ]}
     />
   );
 }
