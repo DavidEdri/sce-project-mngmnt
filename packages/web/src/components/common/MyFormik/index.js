@@ -13,7 +13,8 @@ import {
   MySwitch,
   OtherInput,
   MyTextarea,
-  DateSelect
+  DateSelect,
+  MyUpload,
 } from "./inputs";
 import { fieldsToInitialValues } from "./functions";
 import { captchaKey } from "../../../utils/constants";
@@ -26,12 +27,12 @@ export default function MyFormik({
   title = null,
   paragraph = null,
   useCaptcha = false,
-  afterDefualtSubmit = null
+  afterDefualtSubmit = null,
 }) {
   const initialValues = fieldsToInitialValues(fields);
   const recaptchaRef = React.useRef();
 
-  const defaultOnSubmit = (url, afterDefualtSubmit) => async data => {
+  const defaultOnSubmit = (url, afterDefualtSubmit) => async (data) => {
     const res = await Axios.post(url, data);
 
     if (afterDefualtSubmit) {
@@ -165,7 +166,7 @@ export default function MyFormik({
                       key={f.fieldName}
                       name={f.fieldName}
                       label={f.label}
-                      setValue={value => setFieldValue(f.fieldName, value)}
+                      setValue={(value) => setFieldValue(f.fieldName, value)}
                     />
                   );
 
@@ -176,7 +177,7 @@ export default function MyFormik({
                       key={f.fieldName}
                       name={f.fieldName}
                       label={f.label}
-                      setValue={value => setFieldValue(f.fieldName, value)}
+                      setValue={(value) => setFieldValue(f.fieldName, value)}
                     />
                   );
 
@@ -187,7 +188,7 @@ export default function MyFormik({
                       key={f.fieldName}
                       name={f.fieldName}
                       label={f.label}
-                      setValue={value => setFieldValue(f.fieldName, value)}
+                      setValue={(value) => setFieldValue(f.fieldName, value)}
                     />
                   );
 
@@ -197,11 +198,21 @@ export default function MyFormik({
                       key={f.fieldName}
                       component={f.component}
                       name={f.fieldName}
-                      setValue={value => setFieldValue(f.fieldName, value)}
+                      setValue={(value) => setFieldValue(f.fieldName, value)}
                       other={f.props}
                     />
                   );
 
+                case "upload":
+                  return (
+                    <MyUpload
+                      key={f.fieldName}
+                      name={f.fieldName}
+                      label={f.label}
+                      setValue={(value) => setFieldValue(f.fieldName, value)}
+                      componentProps={f.props}
+                    />
+                  );
                 default:
                   return <Fragment key={i} />;
               }
@@ -214,13 +225,13 @@ export default function MyFormik({
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: 5
+                  marginBottom: 5,
                 }}
               >
                 <ReCAPTCHA
                   ref={recaptchaRef}
                   sitekey={captchaKey}
-                  onChange={e => {
+                  onChange={(e) => {
                     setFieldValue("captcha", e);
                   }}
                 />
@@ -257,5 +268,5 @@ MyFormik.propTypes = {
   paragraph: PropTypes.string,
   validationSchema: PropTypes.any,
   useCaptcha: PropTypes.bool,
-  afterDefualtSubmit: PropTypes.func
+  afterDefualtSubmit: PropTypes.func,
 };

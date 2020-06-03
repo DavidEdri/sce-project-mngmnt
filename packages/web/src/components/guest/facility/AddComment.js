@@ -60,7 +60,10 @@ export default function AddComment({ classes, updateComments, facilityID }) {
   return (
     <ListItem>
       <ListItemAvatar>
-        <Avatar className={classes.primaryColor}>
+        <Avatar
+          className={classes.primaryColor}
+          src={user.avatar ? user.avatar : undefined}
+        >
           {user.name[0].toUpperCase()}
         </Avatar>
       </ListItemAvatar>

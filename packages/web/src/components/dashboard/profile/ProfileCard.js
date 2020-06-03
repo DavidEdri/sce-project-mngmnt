@@ -16,52 +16,52 @@ import {
   CardContent,
   Button,
   Typography,
-  Collapse
+  Collapse,
 } from "@material-ui/core";
 import ShowMoreIcon from "@material-ui/icons/ExpandMore";
 import ShowLessIcon from "@material-ui/icons/ExpandLess";
 import EmailIcon from "@material-ui/icons/Email";
 import text from "../../../utils/_text";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100%",
-    marginBottom: "15px"
+    marginBottom: "15px",
   },
   avatar: {
     backgroundColor: theme.palette.primary.main,
     fontSize: "72px",
     margin: 10,
     width: 120,
-    height: 120
+    height: 120,
   },
   card: {
     width: "100%",
     position: "relative",
-    paddingTop: "15px"
+    paddingTop: "15px",
   },
   cardContent: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   cardActions: {
-    justifyContent: "center"
+    justifyContent: "center",
   },
   cardHeader: {
     padding: 0,
     paddingRight: "10px",
     color: theme.palette.primary.main,
     "& svg": {
-      fontSize: "2rem"
-    }
-  }
+      fontSize: "2rem",
+    },
+  },
 }));
 
 export default function ProfileInfo({ showCollapse }) {
   const classes = useStyles();
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const [showInfo, setShowInfo] = useState(showCollapse);
 
   return (
@@ -76,7 +76,7 @@ export default function ProfileInfo({ showCollapse }) {
           <CardHeader
             className={classes.cardHeader}
             action={
-              <div onClick={() => setShowInfo(old => !old)}>
+              <div onClick={() => setShowInfo((old) => !old)}>
                 {showInfo ? <ShowLessIcon /> : <ShowMoreIcon />}
               </div>
             }
@@ -84,7 +84,10 @@ export default function ProfileInfo({ showCollapse }) {
 
           <Collapse in={showInfo}>
             <CardContent className={classes.cardContent}>
-              <Avatar className={classes.avatar}>
+              <Avatar
+                className={classes.avatar}
+                src={user.avatar ? user.avatar : undefined}
+              >
                 {user.name[0].toUpperCase()}
               </Avatar>
               <Typography variant="h4">{user.name}</Typography>
@@ -104,7 +107,7 @@ export default function ProfileInfo({ showCollapse }) {
               color="primary"
               size="small"
               component={Link}
-              onClick={_ => setShowInfo(false)}
+              onClick={(_) => setShowInfo(false)}
               to="/dashboard/profile/info"
             >
               {text.editProfileInfo}
@@ -117,5 +120,5 @@ export default function ProfileInfo({ showCollapse }) {
 }
 
 ProfileInfo.propTypes = {
-  showCollapse: PropTypes.bool.isRequired
+  showCollapse: PropTypes.bool.isRequired,
 };

@@ -23,7 +23,7 @@ describe("GET /users/useractions/refreshjwt", () => {
 
     expect(response.body).toMatchObject({
       success: true,
-      token: expect.any(String)
+      token: expect.any(String),
     });
   });
 });
@@ -32,7 +32,10 @@ describe("POST /users/useractions/editinfo", () => {
   it("should change user info", async () => {
     const newInfo = {
       name: "New",
-      passwords: { password: "newnew12", password2: "newnew12" }
+      passwords: JSON.stringify({
+        password: "newnew12",
+        password2: "newnew12",
+      }),
     };
     await request(app)
       .post("/users/useractions/editinfo")
@@ -42,7 +45,7 @@ describe("POST /users/useractions/editinfo", () => {
 
     const user = await User.findById(firstUser._id);
     const isMatch = await bcrypt.compare(
-      newInfo.passwords.password,
+      JSON.parse(newInfo.passwords).password,
       user.password
     );
 

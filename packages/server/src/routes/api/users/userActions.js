@@ -1,9 +1,11 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+import multer from "multer";
 import { functions, validation } from "@project/common";
 import User from "../../../models/User";
 import returnText from "../_text";
 import { userToPayload, errorHandler } from "../../../utils/functions";
+import { uploadFileArray } from "../../../utils/s3";
 
 const router = express.Router();
 
@@ -28,10 +30,11 @@ router.get("/refreshjwt", async (req, res) => {
   }
 });
 
-router.post("/editInfo", async (req, res) => {
+router.post("/editInfo", multer().single("avatar"), async (req, res) => {
   const { email } = req.user;
   const { name, passwords } = req.body;
-  const { password, password2 } = passwords;
+  const { password, password2 } = JSON.parse(passwords);
+  const avatar = req.file;
 
   try {
     await validation.inputs
@@ -57,6 +60,11 @@ router.post("/editInfo", async (req, res) => {
       }
 
       user.password = password;
+    }
+
+    if (avatar) {
+      const avatarUrl = await uploadFileArray([avatar], req.user._id);
+      [user.avatar] = avatarUrl;
     }
 
     user.name = name;

@@ -9,7 +9,7 @@ import {
   DatePicker,
   TimePicker,
   DateTimePicker,
-  MuiPickersUtilsProvider
+  MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -27,19 +27,19 @@ import {
   MenuItem,
   Switch,
   Box,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import text from "../../../utils/_text";
 import { isRTL } from "../../../utils/constants";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   label: {
-    marginLeft: 0
+    marginLeft: 0,
   },
   marginDense: {
     marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(0.5)
-  }
+    marginBottom: theme.spacing(0.5),
+  },
 }));
 
 export const MyTextField = ({ ...props }) => {
@@ -93,7 +93,7 @@ export const MyRadioGroup = ({ name, options, label }) => {
     <FormControl fullWidth margin="normal">
       <FormLabel error={isError}>{label}</FormLabel>
       <RadioGroup row>
-        {options.map(o => (
+        {options.map((o) => (
           <MyRadio
             key={o.label}
             type="radio"
@@ -121,7 +121,7 @@ export const MyCheckboxGroup = ({ name, options, label }) => {
     <FormControl component="fieldset" fullWidth margin="normal">
       <FormLabel error={isError}>{label}</FormLabel>
       <FormGroup row>
-        {options.map(o => (
+        {options.map((o) => (
           <MyCheckbox
             key={o.label}
             type="checkbox"
@@ -152,7 +152,7 @@ export const MySelect = ({ name, options, isMulti, label }) => {
         <MenuItem value="">
           <em>{text.selectEmpty}</em>
         </MenuItem>
-        {options.map(o => (
+        {options.map((o) => (
           <MenuItem key={o.value} value={o.value}>
             {o.label}
           </MenuItem>
@@ -228,21 +228,21 @@ export const DateSelect = ({ name, label, setValue, type }) => {
         return (
           <DatePicker
             value={field.value}
-            onChange={date => setValue(date.format())}
+            onChange={(date) => setValue(date.format())}
           />
         );
       case "time":
         return (
           <TimePicker
             value={field.value}
-            onChange={date => setValue(date.format())}
+            onChange={(date) => setValue(date.format())}
           />
         );
       case "datetime":
         return (
           <DateTimePicker
             value={field.value}
-            onChange={date => setValue(date.format())}
+            onChange={(date) => setValue(date.format())}
           />
         );
 
@@ -271,5 +271,31 @@ export const DateSelect = ({ name, label, setValue, type }) => {
       </Box>
       <Typography color="error">{errorMsg}</Typography>
     </Box>
+  );
+};
+
+export const MyUpload = ({ setValue, componentProps, ...props }) => {
+  const [field, meta] = useField(props);
+  const errorMsg = meta.error && meta.touched ? meta.error : "";
+  const isError = errorMsg !== "";
+  const { label } = props;
+
+  return (
+    <FormControl fullWidth margin="normal">
+      <FormLabel error={isError}>{label}</FormLabel>
+      <TextField
+        type="file"
+        name={field.name}
+        onBlur={field.onBlur}
+        fullWidth
+        onChange={(e) => setValue(e.currentTarget.files[0])}
+        {...componentProps}
+      />
+      {isError && (
+        <FormHelperText error variant="standard" style={{ fontSize: "16px" }}>
+          {errorMsg}
+        </FormHelperText>
+      )}
+    </FormControl>
   );
 };

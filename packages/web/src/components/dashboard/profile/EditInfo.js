@@ -24,6 +24,11 @@ const fields = (user) => [
     initialValue: user.name,
   },
   {
+    fieldName: "avatar",
+    label: "Change profile image",
+    type: "upload",
+  },
+  {
     fieldName: "passwords",
     type: "other",
     component: EditPassword,
@@ -31,12 +36,21 @@ const fields = (user) => [
   },
 ];
 
-const onSubmit = (dispatch) => async (data, actions, resetCaptcha) => {
+const onSubmit = (dispatch) => async (values, actions, resetCaptcha) => {
   try {
-    await Axios.post("/users/userActions/editInfo", data);
+    const formData = new FormData();
+
+    Object.keys(values).forEach((k) => {
+      if (k !== "passwords") formData.append(k, values[k]);
+    });
+
+    formData.append("passwords", JSON.stringify(values.passwords));
+
+    await Axios.post("/users/userActions/editInfo", formData);
     await refreshJwt(dispatch);
     window.location.href = "/dashboard/profile/home";
   } catch (error) {
+    console.log(error.response.data);
     if (isProduction()) {
       resetCaptcha(error);
     }

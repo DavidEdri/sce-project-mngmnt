@@ -56,7 +56,10 @@ export default function Comments({ facilityComments, facilityID }) {
           <Box display="flex" alignItems="center" justifyContent="space-around">
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar className={classes.primaryColor}>
+                <Avatar
+                  className={classes.primaryColor}
+                  src={c.user.avatar ? c.user.avatar : undefined}
+                >
                   {c.user.name[0].toUpperCase()}
                 </Avatar>
               </ListItemAvatar>

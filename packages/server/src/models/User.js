@@ -25,7 +25,7 @@ const UserSchema = new Schema(
       ref: "facilities",
     },
     avatar: {
-      type: Buffer,
+      type: String,
     },
     active: {
       type: Boolean,

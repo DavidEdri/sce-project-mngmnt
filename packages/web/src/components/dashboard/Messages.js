@@ -29,7 +29,7 @@ const Messages = () => {
         <React.Fragment key={i}>
           <ListItem>
             <ListItemAvatar>
-              <Avatar>
+              <Avatar src={m.from.avatar ? m.from.avatar : undefined}>
                 <ImageIcon />
               </Avatar>
             </ListItemAvatar>
