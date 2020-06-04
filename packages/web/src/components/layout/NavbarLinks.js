@@ -21,7 +21,13 @@ export function UserLinks({ closeMenu }) {
   return (
     <LinksAbstract
       closeMenu={closeMenu}
-      links={[{ text: text.dashboardLink, to: "/dashboard" }]}
+      links={[
+        { text: text.dashboardLink, to: "/dashboard" },
+        {
+          text: "Messages",
+          to: "/dashboard/messages",
+        },
+      ]}
     />
   );
 }

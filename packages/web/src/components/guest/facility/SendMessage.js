@@ -17,25 +17,7 @@ export default function SendMessage({ managerID }) {
           message facility manager
         </Button>
       ) : (
-        <MyFormik
-          afterDefualtSubmit={afterDefaultSubmit}
-          onSubmit="/users/messages"
-          fields={[
-            {
-              fieldName: "to",
-              type: "invisible",
-              initialValue: managerID,
-            },
-            {
-              fieldName: "message",
-              type: "textarea",
-              label: "Message",
-              initialValue: "",
-              rows: 2,
-              rowsMax: 4,
-            },
-          ]}
-        />
+        <MessageForm to={managerID} afterDefaultSubmit={afterDefaultSubmit} />
       )}
     </Box>
   );
@@ -43,4 +25,33 @@ export default function SendMessage({ managerID }) {
 
 SendMessage.propTypes = {
   managerID: PropTypes.string.isRequired,
+};
+
+export function MessageForm({ to, afterDefaultSubmit = undefined }) {
+  return (
+    <MyFormik
+      afterDefualtSubmit={afterDefaultSubmit}
+      onSubmit="/users/messages"
+      fields={[
+        {
+          fieldName: "to",
+          type: "invisible",
+          initialValue: to,
+        },
+        {
+          fieldName: "message",
+          type: "textarea",
+          label: "Message",
+          initialValue: "",
+          rows: 2,
+          rowsMax: 4,
+        },
+      ]}
+    />
+  );
+}
+
+MessageForm.propTypes = {
+  to: PropTypes.string.isRequired,
+  afterDefaultSubmit: PropTypes.func,
 };
