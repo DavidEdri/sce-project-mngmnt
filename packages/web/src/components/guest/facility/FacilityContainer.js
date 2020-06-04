@@ -9,6 +9,7 @@ import Location from "./Location";
 import Comments from "./Comments";
 import Gallery from "./Gallery";
 import SendMessage from "./SendMessage";
+import Report from "./Report";
 
 const { pick } = functions;
 
@@ -51,6 +52,7 @@ export default function FacilityContainer({ facility }) {
           <SendMessage managerID={facility.manager} />
         </Grid>
       )}
+      <Report facilityID={facility._id} />
     </Grid>
   );
 }

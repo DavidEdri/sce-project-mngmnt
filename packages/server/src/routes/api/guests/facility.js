@@ -1,5 +1,7 @@
 import express from "express";
+import { validation } from "@project/common";
 import Facility from "../../../models/Facility";
+import Report from "../../../models/Report";
 import { errorHandler } from "../../../utils/functions";
 
 const router = express.Router();
@@ -30,6 +32,24 @@ router.get("/", async (req, res) => {
     );
 
     return res.status(200).json(facilities);
+  } catch (error) {
+    const { json, status } = errorHandler(error, req);
+    return res.status(status).json(json);
+  }
+});
+
+router.post("/report", async (req, res) => {
+  const { to, message } = req.body;
+
+  try {
+    await validation.forms.report.validate(
+      { to, message },
+      { abortEarly: false }
+    );
+    const newReport = new Report({ to, message });
+    await newReport.save();
+
+    return res.status(200).json({ msg: "Sent successfully" });
   } catch (error) {
     const { json, status } = errorHandler(error, req);
     return res.status(status).json(json);
