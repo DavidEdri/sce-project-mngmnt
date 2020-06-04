@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../../app";
-import { tearup, managerToken, testFacility } from "../data/facility";
+import { tearup, managerToken } from "../data/facility";
 
 beforeAll(tearup);
 

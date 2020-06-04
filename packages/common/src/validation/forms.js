@@ -1,10 +1,10 @@
 import * as Yup from "yup";
 import {
-  requiredField,
+  boolField,
   email,
   passwordConfirm,
   rank,
-  boolField,
+  requiredField,
 } from "./inputs";
 
 export const noValidate = Yup.object().shape({});
